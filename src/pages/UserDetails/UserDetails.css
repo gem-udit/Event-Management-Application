@@ -1,0 +1,43 @@
+.user-details {
+  width: 70vw;
+  border: 1px solid rgb(221, 221, 221);
+  border-radius: 5px;
+  margin: auto;
+  margin-top: 20px;
+}
+.user-img{
+  width: 100%;
+  height: 150px;
+  text-align: center;
+}
+.user-img > img{
+  border-radius: 50%;
+}
+.user-detail-row{
+  padding: 10px;
+}
+.user-detail-column-1{
+  font-weight: bold;
+}
+.user-detail-title{
+  font-weight: bolder;
+  font-size: 40px;
+  text-align: center;
+  padding: 20px;
+}
+.align-upd-img-button{
+  text-align: center;
+}
+.update-image-button{
+  border: 1px solid black;
+  border-radius: 5px;
+  font-weight: bold;
+  color: white;
+  background-color: red;
+  margin: 10px;
+  width: 15%;
+  height: 30px;
+}
+.hide-file-button{
+  display: none;
+}

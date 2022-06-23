@@ -1,0 +1,40 @@
+
+.my-register-container {
+    text-align: center;
+}
+.register-heading{
+    padding-top: 40px;
+    color: blue;
+    font-weight: bold;
+}
+.my-register-form{
+    padding: 20px 0;
+    text-align: center;
+}
+.my-register-input {
+    width: 100%;
+    background-color: white;
+    border: 1px solid lightgrey;
+    border-radius: 3px;
+    display: block;
+    text-align: center;
+    padding: 10px;
+    margin: 5px;
+}
+
+.my-register-input:focus {
+    outline: none !important;
+    border: 1px solid rgb(139, 139, 255);
+}
+
+.my-register-button {
+    color: white;
+    background-color: #3333f8;
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 10px 30px;
+    width: 60%;
+}
+.my-register-page-image{
+    height: 85vh;
+}

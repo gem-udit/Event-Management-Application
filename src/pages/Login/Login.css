@@ -1,0 +1,40 @@
+.my-login-container {
+    text-align: center;
+}
+.login-heading{
+    padding-top: 80px;
+    color: blue;
+    font-weight: bolder;
+}
+.my-login-form{
+    padding: 40px 0;
+    text-align: center;
+}
+.my-login-input {
+    width: 200px;
+    background-color: white;
+    border: 1px solid lightgrey;
+    border-radius: 3px;
+    display: block;
+    text-align: center;
+    margin: 10px auto;
+    padding: 10px;
+    width: 60%;
+}
+
+.my-login-input:focus {
+    outline: none !important;
+    border: 1px solid rgb(139, 139, 255);
+}
+
+.my-login-button {
+    color: white;
+    background-color: #3333f8;
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 10px 30px;
+    width: 60%;
+}
+.my-login-page-image{
+    height: 85vh;
+}
