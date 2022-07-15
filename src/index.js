@@ -2,12 +2,18 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import PathState from './context/pathState';
+import UserState from './context/userState';
 import 'bootstrap/dist/css/bootstrap.min.css'
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App />
+    <UserState>
+      <PathState>
+        <App />
+      </PathState>
+    </UserState>
   </React.StrictMode>
 );
 

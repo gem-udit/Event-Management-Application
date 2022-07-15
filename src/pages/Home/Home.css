@@ -1,3 +1,35 @@
 .home{
+    text-align: left;
+}
+.my-home-container{
+    margin: auto;
+    border-radius: 5px;
+    border: 1px solid lightgray;
+    padding: 20px;
+    width: 63vw;
+    height:63vh;
+    overflow-y: scroll;
+}
+.home-text-center{
     text-align: center;
+}
+.align-home-event-btn{
+    text-align: center;
+    margin: 5px;
+}
+.footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    margin: auto;
+    background-color: rgb(47, 47, 47);
+    border-radius: 3px;
+
+    color: white;
+    text-align: center;
+ }
+@media (max-width: 767px) {
+    .my-home-container{
+        width: 90vw;
+    }
 }

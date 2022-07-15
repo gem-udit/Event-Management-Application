@@ -1,5 +1,6 @@
 .my-login-container {
     text-align: center;
+    padding: auto 0px;
 }
 .login-heading{
     padding-top: 80px;
@@ -11,7 +12,6 @@
     text-align: center;
 }
 .my-login-input {
-    width: 200px;
     background-color: white;
     border: 1px solid lightgrey;
     border-radius: 3px;
@@ -22,10 +22,6 @@
     width: 60%;
 }
 
-.my-login-input:focus {
-    outline: none !important;
-    border: 1px solid rgb(139, 139, 255);
-}
 
 .my-login-button {
     color: white;
@@ -36,5 +32,5 @@
     width: 60%;
 }
 .my-login-page-image{
-    height: 85vh;
+    height: 100vh;
 }

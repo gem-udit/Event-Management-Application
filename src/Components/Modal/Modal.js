@@ -3,26 +3,7 @@ import { Modal } from "react-bootstrap";
 import ModalRow from "./ModalRow";
 import "./Modal.css";
 import { getParticularUser } from "../../services/users.service"
-const initializeUser = {
-  id: 0,
-  name: '',
-  username: '',
-  email: '',
-  phone: '',
-  website: '',
-  address: {
-    street: '',
-    suite: '',
-    city: '',
-    zipcode: '',
-  },
-  company: {
-    name: '',
-    catchPhrase: '',
-    bs: ''
-  }
-
-}
+import initializeUser from "../../data/InitializeUser";
 
 function MyModal({ setOpenModal, userId }) {
 
