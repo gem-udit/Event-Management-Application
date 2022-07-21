@@ -1,36 +1,36 @@
-.my-login-container {
-    text-align: center;
-    padding: auto 0px;
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-.login-heading{
-    padding-top: 80px;
-    color: blue;
-    font-weight: bolder;
+.login-heading {
+  color: blue;
+  font-weight: bolder;
+  text-align: center;
+  margin-bottom: 10%;
 }
-.my-login-form{
-    padding: 40px 0;
-    text-align: center;
+.login-form {
+  text-align: center;
 }
-.my-login-input {
-    background-color: white;
-    border: 1px solid lightgrey;
-    border-radius: 3px;
-    display: block;
-    text-align: center;
-    margin: 10px auto;
-    padding: 10px;
-    width: 60%;
+.login-input {
+  background-color: white;
+  border: 1px solid lightgrey;
+  border-radius: 40px;
+  display: block;
+  text-align: center;
+  margin: 20px auto;
+  padding: 10px;
+  width: 100%;
 }
 
-
-.my-login-button {
-    color: white;
-    background-color: #3333f8;
-    border: 1px solid black;
-    border-radius: 5px;
-    padding: 10px 30px;
-    width: 60%;
+.login-button {
+  color: white;
+  background-color: #3333f8;
+  border: 1px solid black;
+  border-radius: 40px;
+  padding: 10px 30px;
+  width: 50%;
 }
-.my-login-page-image{
-    height: 100vh;
+.login-page-image {
+  height: 100vh;
 }

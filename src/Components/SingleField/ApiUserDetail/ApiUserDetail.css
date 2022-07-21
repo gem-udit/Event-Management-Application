@@ -1,0 +1,20 @@
+.center-text {
+  text-align: center;
+}
+.bold-user-text {
+  font-weight: bold;
+}
+.left-padding {
+  padding-left: 20%;
+}
+.inc-user-text-size {
+  font-size: 18px;
+}
+.bottom-margin {
+  margin-bottom: 40px;
+}
+@media (max-width: 767px) {
+  .left-padding {
+    padding-left: 5%;
+  }
+}

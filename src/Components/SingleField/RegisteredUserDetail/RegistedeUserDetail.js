@@ -1,6 +1,6 @@
 import React from "react";
-import "./UserDetails.css";
-function UserDetailsSingleRow(entity) {
+import "./RegisteredUserDetail.css";
+function ProfileSingleRow(entity) {
     return (
         <div className="row user-detail-row">
             <div className="col-md-5 offset-md-2 user-detail-column-1">
@@ -12,18 +12,18 @@ function UserDetailsSingleRow(entity) {
         </div>
     )
 }
-function UserDetailsHeading(entity){
+function ProfileHeading(entity) {
     return (
         <div className="user-detail-title">
             {entity.heading}
         </div>
     );
 }
-function UserDetailsImage(entity){
+function ProfileImage(entity) {
     return (
         <div className="user-img">
             <img src={entity.image} alt="" width={"140px"} height={"100%"} />
         </div>
     );
 }
-export {UserDetailsSingleRow,UserDetailsHeading,UserDetailsImage};
+export { ProfileSingleRow, ProfileHeading, ProfileImage };

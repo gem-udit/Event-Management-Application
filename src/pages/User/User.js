@@ -1,40 +1,49 @@
 import React, { useEffect, useState, useContext } from "react";
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import initializeUser from "../../data/InitializeUser";
-import "./User.css";
-import { SingleEntity, SingleHeading } from "./UserPageSingleDetail";
+import { ApiUserSingleField, ApiUserSingleHeading } from "../../components/SingleField/ApiUserDetail/ApiUserDetail";
 import { getParticularUser } from '../../services/users.service';
 import PathContext from "../../context/pathContext";
+import UserContext from "../../context/userContext";
+import "./User.css";
 
 function User() {
     const { userId } = useParams();
     const [user, setUser] = useState(initializeUser);
-    var pathContext = useContext(PathContext);
+    let pathContext = useContext(PathContext);
+    const userContext = useContext(UserContext);
+    const navigate = useNavigate();
     useEffect(() => {
         pathContext.updatePath(window.location.pathname);
+        if (userContext.userDetails === null || userContext.userDetails === undefined || userContext.userDetails.name.length === 0) {
+            navigate("/Login");
+        }
+        else {
+            navigate(window.location.pathname);
+        }
         getParticularUser(userId).then(response => {
             setUser(response)
         }).catch(error => {
             console.log(error);
         });
-    }, [userId, pathContext])
+    }, [userId, pathContext, userContext, navigate])
     return (
         <div className="container user-container shadow">
-            <SingleHeading heading="Personal Details" />
+            <ApiUserSingleHeading heading="Personal Details" />
             <div className="row">
-                <SingleEntity title="Name" data={user.name} />
-                <SingleEntity title="User Name" data={user.username} />
-                <SingleEntity title="Email" data={user.email} />
-                <SingleEntity title="Phone Number" data={user.phone} />
-                <SingleEntity title="Website" data={<a href={"https://" + user.website} target="_blank" rel="noreferrer">{user.website}</a>} />
-                <SingleEntity title="Address" data={user.address.street + ", " + user.address.suite + ", " + user.address.city + ", " + user.address.zipcode} />
+                <ApiUserSingleField title="Name" data={user.name} />
+                <ApiUserSingleField title="User Name" data={user.username} />
+                <ApiUserSingleField title="Email" data={user.email} />
+                <ApiUserSingleField title="Phone Number" data={user.phone} />
+                <ApiUserSingleField title="Website" data={<a href={"https://" + user.website} target="_blank" rel="noreferrer">{user.website}</a>} />
+                <ApiUserSingleField title="Address" data={user.address.street + ", " + user.address.suite + ", " + user.address.city + ", " + user.address.zipcode} />
             </div>
             <hr />
-            <SingleHeading heading="Company Details" />
+            <ApiUserSingleHeading heading="Company Details" />
             <div className="row">
-                <SingleEntity title="Name" data={user.company.name} />
-                <SingleEntity title="Catch Phrase" data={user.company.catchPhrase} />
-                <SingleEntity title="Industry" data={user.company.bs} />
+                <ApiUserSingleField title="Name" data={user.company.name} />
+                <ApiUserSingleField title="Catch Phrase" data={user.company.catchPhrase} />
+                <ApiUserSingleField title="Industry" data={user.company.bs} />
             </div>
         </div >);
 }

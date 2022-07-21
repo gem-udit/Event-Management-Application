@@ -1,14 +1,12 @@
 .my-createEvent-container {
     padding: 10px;
-    margin: auto;
 }
 .my-createEvent-input {
     background-color: white;
     border: 1px solid lightgrey;
     border-radius: 3px;
-    display: block;
     padding: 10px;
-    width: 60%;
+    width: 100%;
 }
 .my-createEvent-input-date{
     background-color: white;

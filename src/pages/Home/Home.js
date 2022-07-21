@@ -1,25 +1,54 @@
 import React, { useState, useEffect, useContext } from "react";
-import './Home.css';
-import CreateEventModal from "../../Components/CreateEventModal/CreateEventModal";
+import { useNavigate } from "react-router-dom";
 import Button from "react-bootstrap/esm/Button";
-import Event from "../../Components/Event/Event";
+import CreateEvent from "../../components/CreateEvent/CreateEvent";
+import ShowEvent from "../../components/ShowEvent/ShowEvent";
 import PathContext from "../../context/pathContext";
 import UserContext from "../../context/userContext";
+import { db } from '../../firebase/firebase';
+import { collection, addDoc, Timestamp, query, orderBy, onSnapshot } from 'firebase/firestore'
+import './Home.css';
 function Home() {
 
     const pathContext = useContext(PathContext);
-    const userContext = useContext(UserContext)
-    useEffect(() => {
-        pathContext.updatePath(window.location.pathname);
-        console.log(userContext.userDetails);
-    }, [pathContext, userContext])
-
+    const userContext = useContext(UserContext);
     const [allEvents, setAllEvents] = useState([]);
     const [modalOpen, setModalOpen] = useState(false)
-    function addNote(newEvent) {
-        setAllEvents(allPrevNotes => {
-            return [...allPrevNotes, newEvent];
-        });
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        fetchAllEvents();
+        pathContext.updatePath(window.location.pathname);
+        if (userContext.userDetails === null || userContext.userDetails === undefined || userContext.userDetails.name.length === 0) {
+            navigate("/Login");
+        }
+        else {
+            navigate(window.location.pathname);
+        }
+    }, [pathContext, userContext, navigate]);
+
+    const fetchAllEvents = () => {
+        const q = query(collection(db, 'allEvents'), orderBy('eventDate', 'desc'))
+        onSnapshot(q, (querySnapshot) => {
+            setAllEvents(querySnapshot.docs.map(doc => ({
+                id: doc.id,
+                data: doc.data()
+            })))
+        })
+    }
+
+    const addNote = async (newEvent) => {
+        fetchAllEvents();
+        try {
+            await addDoc(collection(db, 'allEvents'), {
+                title: newEvent.title,
+                description: newEvent.description,
+                eventDate: newEvent.eventDate,
+                created: Timestamp.now()
+            })
+        } catch (err) {
+            alert(err)
+        }
     }
 
     return (
@@ -30,16 +59,15 @@ function Home() {
                     Create Event
                 </Button>
             </div>
-
-            <div className="my-home-container">
+            <div className="home-container">
                 {allEvents.map((eventItem, index) => {
-                    return (<Event key={index} title={eventItem.title} description={eventItem.description} eventDate={eventItem.eventDate} />);
+                    return (<ShowEvent key={eventItem.id} id={eventItem.id} title={eventItem.data.title} description={eventItem.data.description} eventDate={eventItem.data.eventDate} />);
                 })}
             </div>
             <div className="footer">
                 Copyright 2022 by Gemini Training
             </div>
-            {modalOpen && <CreateEventModal setOpenModal={setModalOpen} onAdd={addNote} />}
+            {modalOpen && <CreateEvent setOpenModal={setModalOpen} onAdd={addNote} />}
         </div>
     )
 }

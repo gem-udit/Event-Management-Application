@@ -1,29 +1,9 @@
-.center-text{
-    text-align: center;
+hr {
+  border-radius: 5px;
+  border: 2px solid grey;
+  width: 100%;
 }
-.bold-user-text{
-    font-weight: bold;
-}
-.left-padding{
-    padding-left: 20%;
-}
-.inc-user-text-size{
-    font-size: 18px;
-}
-.bottom-margin{
-    margin-bottom: 40px;
-}
-hr{
-    border-radius: 5px;
-    border: 2px solid grey;
-    width: 100%;
-}
-.user-container{
-    border: 3px solid lightgray;
-    border-radius: 5px;
-}
-@media (max-width: 767px) {
-    .left-padding{
-        padding-left: 5%;
-    }
+.user-container {
+  border: 3px solid lightgray;
+  border-radius: 5px;
 }

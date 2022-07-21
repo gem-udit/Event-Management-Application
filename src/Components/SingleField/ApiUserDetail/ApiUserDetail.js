@@ -1,6 +1,6 @@
 import React from "react";
-import "./User.css";
-function SingleEntity(entity) {
+import "./ApiUserDetail.css";
+function ApiUserSingleField(entity) {
     return (
         <div className="col-md-4 mb-4">
             <div className="bold-user-text left-padding inc-user-text-size">
@@ -12,9 +12,9 @@ function SingleEntity(entity) {
         </div>
     )
 }
-function SingleHeading(entity){
-    return(
+function ApiUserSingleHeading(entity) {
+    return (
         <h2 className="center-text bold-user-text bottom-margin">{entity.heading}</h2>
     )
 }
-export {SingleEntity, SingleHeading};
+export { ApiUserSingleField, ApiUserSingleHeading };

@@ -1,31 +1,33 @@
 import React, { useState, useEffect, useContext } from "react";
 import './AllUser.css';
-// import MyModal from "../../Components/Modal/Modal"
 import { Table } from "react-bootstrap";
 import { getAllUsers } from '../../services/users.service';
 import { useNavigate } from "react-router-dom";
-import PathContext from "../../context/pathContext"
+import PathContext from "../../context/pathContext";
+import UserConetxt from "../../context/userContext"
 
 function AllUser() {
     const [users, setUsers] = useState([]);
-    //const [modalOpen, setModalOpen] = useState(false)
-    //const [selectedUser, setSelectedUser] = useState(null)
     const navigate = useNavigate();
-
-    var pathContext = useContext(PathContext);
+    let pathContext = useContext(PathContext);
+    let userContext = useContext(UserConetxt);
 
     useEffect(() => {
         pathContext.updatePath(window.location.pathname);
+        if (userContext.userDetails === null || userContext.userDetails === undefined || userContext.userDetails.name.length === 0) {
+            navigate("/Login");
+        }
+        else {
+            navigate(window.location.pathname);
+        }
         getAllUsers().then(response => {
             setUsers(response);
         }).catch(error => {
             setUsers([]);
         });
-    }, [pathContext])
+    }, [pathContext, userContext, navigate])
 
     const handleClick = (user) => {
-        //setModalOpen(true);
-        //setSelectedUser(user);
         navigate("/User/" + user.id)
     }
     return (
@@ -57,7 +59,6 @@ function AllUser() {
                     })}
                 </tbody>
             </Table>
-            {/* {modalOpen && <MyModal setOpenModal={setModalOpen} userId={selectedUser.id} />} */}
         </>
     )
 }

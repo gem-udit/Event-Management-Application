@@ -1,0 +1,41 @@
+.my-createEvent-container {
+  padding: 10px;
+}
+.my-createEvent-input {
+  background-color: white;
+  border: 1px solid lightgrey;
+  border-radius: 3px;
+  padding: 10px;
+  width: 100%;
+}
+.my-createEvent-input-date {
+  background-color: white;
+  border: 1px solid lightgrey;
+  border-radius: 3px;
+  display: block;
+  padding: 10px;
+  width: 100%;
+}
+.my-createEvent-input:focus,
+.my-createEvent-input-date:focus {
+  outline: none !important;
+  border: 1px solid rgb(139, 139, 255);
+}
+
+.my-createEvent-center-btns {
+  text-align: center;
+}
+.my-createEvent-btns {
+  color: white;
+  border-radius: 5px;
+  width: 20%;
+  height: 35px;
+}
+.my-createEvent-submit-btn-color {
+  background-color: green;
+  border: 1px solid green;
+}
+.my-createEvent-reset-btn-color {
+  background-color: red;
+  border: 1px solid red;
+}

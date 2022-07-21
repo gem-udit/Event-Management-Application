@@ -1,7 +1,7 @@
 .home{
     text-align: left;
 }
-.my-home-container{
+.home-container{
     margin: auto;
     border-radius: 5px;
     border: 1px solid lightgray;
@@ -29,7 +29,7 @@
     text-align: center;
  }
 @media (max-width: 767px) {
-    .my-home-container{
+    .home-container{
         width: 90vw;
     }
 }

@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import './App.css';
-import MyNavbar from './Components/Navbar/Navbar'
+import NavigationBar from './components/Navbar/Navbar'
 import Home from './pages/Home/Home';
 import AllUser from './pages/AllUser/AllUser'
 import UserDetails from './pages/UserDetails/UserDetails'
@@ -11,10 +11,11 @@ import { useContext } from 'react';
 import PathContext from './context/pathContext';
 
 function App() {
+
     const pathContext = useContext(PathContext);
     return (
         <Router>
-            {(pathContext.pathName !== "/Register" && pathContext.pathName !== "/Login") && <MyNavbar />}
+            {(pathContext.pathName !== "/Register" && pathContext.pathName !== "/Login") && <NavigationBar />}
             <Routes>
                 <Route path="/Login" exact element={<Login />} />
                 <Route path="/Register" element={<Register />} />

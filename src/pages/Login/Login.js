@@ -5,8 +5,9 @@ import { useNavigate } from "react-router-dom";
 import './Login.css';
 function Login() {
 
+    const pathContext = useContext(PathContext);
+    const userContext = useContext(UserContext);
     const navigate = useNavigate();
-
     const [loginFormValues, setLoginFormValues] = useState({
         userName: '',
         password: '',
@@ -15,96 +16,63 @@ function Login() {
     const [loginFormErrors, setLoginFormErrors] = useState({
         userName: '',
         password: '',
-    })
-    const [userPassword, setUserPassword] = useState("");
-    const pathContext = useContext(PathContext);
-    const userContext = useContext(UserContext);
+    });
+
     useEffect(() => {
         pathContext.updatePath(window.location.pathname);
-    }, [pathContext])
+        if (userContext.userDetails !== null && userContext.userDetails !== undefined && userContext.userDetails.name.length !== 0) {
+            navigate("/Home");
+        }
+    }, [pathContext, userContext, navigate]);
 
-    const formValid = (isError, formValues) => {
-        Object.values(isError).forEach(val => {
-            if (val.length > 0) {
-                return false;
+    const isLoginFormValid = () => {
+        let isError = loginFormErrors;
+        let user = null;
+        let isFormValid = true;
+        if (loginFormValues.userName === "") {
+            isError.userName = "username is required";
+            isFormValid = false;
+        }
+        else {
+            let stringObj = localStorage.getItem(loginFormValues.userName);
+            user = JSON.parse(stringObj);
+            if (user === null || user === undefined) {
+                isError.userName = "username does not exist";
+                isFormValid = false;
             }
-        });
-
-        let isValid = true;
-        if (formValues.userName.length === 0) {
-            isError.userName = "Username is required"
-            isValid = false;
         }
-        if (formValues.password.length === 0) {
-            isError.password = "Password is required"
-            isValid = false;
+        if (loginFormValues.password === "") {
+            isError.password = "password is required";
+            isFormValid = false;
         }
-        if (!isValid) {
-            setLoginFormErrors(prevState => {
-                return {
-                    ...prevState, isError
-                }
-            });
+        else {
+            if (user !== null && user !== undefined && user.password !== loginFormValues.password) {
+                isError.password = "password is incorrect";
+                isFormValid = false;
+            }
         }
-        return isValid;
-    };
-
+        setLoginFormErrors((prevData) => {
+            return {
+                ...prevData,
+                isError
+            }
+        })
+        return isFormValid;
+    }
     const onSubmit = (event) => {
         event.preventDefault();
-        if (formValid(loginFormErrors, loginFormValues)) {
-            var stringObj = localStorage.getItem(loginFormValues.userName);
-            var loggedInUser = JSON.parse(stringObj);
+        if (isLoginFormValid()) {
+            let stringObj = localStorage.getItem(loginFormValues.userName);
+            let loggedInUser = JSON.parse(stringObj);
+            localStorage.setItem("authorizedUserDetails", JSON.stringify(loggedInUser));
             userContext.updateUser(loggedInUser);
-            navigate("/Home")
+            navigate("/Home");
         }
     };
 
     const formValChange = (event) => {
         event.preventDefault();
         const { name, value } = event.target;
-        let isError = loginFormErrors;
-        var user = null;
-
-        if (name === "userName") {
-            var stringObj = localStorage.getItem(value);
-            user = JSON.parse(stringObj);
-        }
-
-        if (user !== null) {
-            setUserPassword(user.password);
-            if (loginFormValues.password.length !== 0) {
-                isError.password = (user.password === loginFormValues.password)
-                    ? ""
-                    : "Password is incorrect";
-            }
-        }
-
-        switch (name) {
-            case "password":
-                if (value.length === 0) {
-                    isError.password = "Password is Required";
-                }
-                else {
-                    isError.password = (userPassword === value)
-                        ? ""
-                        : "Password is incorrect";
-                }
-                break;
-
-            case "userName":
-                if (value.length === 0) {
-                    isError.userName = "Username is Required";
-                }
-                else {
-                    isError.userName = (user !== null)
-                        ? ""
-                        : "Username does not exist";
-                }
-                break;
-
-            default:
-                break;
-        }
         setLoginFormValues(prevState => {
             return {
                 ...prevState,
@@ -113,30 +81,32 @@ function Login() {
         })
         setLoginFormErrors(prevState => {
             return {
-                ...prevState, isError
+                ...prevState,
+                [name]: ""
             }
         });
     };
 
     const isError = loginFormErrors;
+
     return (
         <div className="row">
-            <div className="col-md-6 my-login-page-image">
+            <div className="col-md-6 login-page-image">
                 <img src="https://wedevs.com/_ipx/https://cdn.wedevs.com/uploads/2022/03/How-to-Redirect-User-to-a-Custom-URL-After-Login.png?f=webp&q=90" alt="" width={"100%"} height={"100%"} />
             </div>
-            <div className="my-login-container col-md-6">
+            <div className="login-container col-md-6">
                 <div>
                     <h1 className="login-heading">Login</h1>
-                    <form className="my-login-form" onSubmit={onSubmit} noValidate>
-                        <input className={isError.userName.length > 0 ? "my-login-input is-invalid form-control" : "my-login-input form-control"} type="text" name="userName" placeholder="Enter Username" onChange={formValChange}></input>
+                    <form className="login-form" onSubmit={onSubmit} noValidate>
+                        <input className={isError.userName.length > 0 ? "login-input is-invalid form-control" : "login-input form-control"} type="text" name="userName" placeholder="Enter Username" onChange={formValChange}></input>
                         {isError.userName.length > 0 && (
                             <span className="invalid-feedback">{isError.userName}</span>
                         )}
-                        <input className={isError.password.length > 0 ? "my-login-input is-invalid form-control" : "my-login-input form-control"} type="text" name="password" placeholder="Enter Password" onChange={formValChange}></input>
+                        <input className={isError.password.length > 0 ? "login-input is-invalid form-control" : "login-input form-control"} type="password" name="password" placeholder="Enter Password" onChange={formValChange}></input>
                         {isError.password.length > 0 && (
                             <span className="invalid-feedback">{isError.password}</span>
                         )}
-                        <button className="my-login-button" type="submit">Submit</button>
+                        <button className="login-button" type="submit">Submit</button>
                         <div className="p-2">Don't have a account? <a href="/Register">Register Yourself</a></div>
                     </form>
                 </div>
