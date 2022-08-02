@@ -1,0 +1,13 @@
+.user-name {
+  cursor: pointer;
+}
+.user-name:hover {
+  color: darkgreen;
+  font-weight: bold;
+}
+.user-odd-idx-background {
+  background-color: white;
+}
+.user-even-idx-background {
+  background-color: rgb(175, 253, 175);
+}

@@ -24,6 +24,7 @@ function NavigationBar() {
             password: "",
             profileImg: ""
         });
+        userContext.updateUserImg("https://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/Unknown_person.jpg/925px-Unknown_person.jpg")
     }
     return (
         <>
@@ -33,14 +34,14 @@ function NavigationBar() {
                     <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                     <Navbar.Collapse id="responsive-navbar-nav">
                         <Nav className="me-auto">
-                            <NavLink to="/Home" className={({ isActive }) => (isActive ? 'active' : 'inactive')}>Dashboard</NavLink>
-                            <NavLink to="/AllUser" className={({ isActive }) => (isActive ? 'active' : 'inactive')}>All Users</NavLink>                        </Nav>
+                            <NavLink to="/home" className={({ isActive }) => (isActive ? 'active' : 'inactive')}>Dashboard</NavLink>
+                            <NavLink to="/user-directory" className={({ isActive }) => (isActive ? 'active' : 'inactive')}>User Directory</NavLink>
+                            <NavLink to="/employee-directory" className={({ isActive }) => (isActive ? 'active' : 'inactive')}>Employee Directory</NavLink>
+                        </Nav>
                         <Nav>
-                            <div style={{ color: "white", display: "flex", alignItems: "center", justifyContent: "center", padding: "10px" }}>
-                                <span>Hi {userContext.userDetails.name}</span>
-                            </div>
-                            <img className="profileImg" src={userContext.userImg} alt="" onClick={() => navigate("/UserDetails")} />
-                            <NavLink to="/Login" onClick={clearUserContextFields} className="inactive"> Sign Out</NavLink>
+                            <img className="profileImg" src={userContext.userImg} alt="" onClick={() => navigate("/user-profile")} />
+                            <NavLink to="/user-profile" className={({ isActive }) => (isActive ? 'active' : 'inactive')}>Your Profile</NavLink>
+                            <NavLink to="/login" onClick={clearUserContextFields} className="inactive"> Sign Out</NavLink>
                         </Nav>
                     </Navbar.Collapse>
                 </Container>

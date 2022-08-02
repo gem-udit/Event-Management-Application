@@ -1,0 +1,22 @@
+hr {
+  border-radius: 5px;
+  border: 2px solid grey;
+  width: 100%;
+}
+.employee-small-container {
+  border: 1px solid lightgray;
+  box-shadow: 10px 10px lightgray;
+  border-radius: 5px;
+  width: 80%;
+}
+.employee-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 88vh;
+}
+@media (max-width: 767px) {
+  .employee-container {
+    height: 100%;
+  }
+}

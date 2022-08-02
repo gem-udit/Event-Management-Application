@@ -1,31 +1,18 @@
-.show-event {
-  border: 1px solid lightgrey;
-  border-radius: 5px;
-  margin: auto;
-  width: 90%;
-  padding: 10px;
-  padding-left: 30px;
-}
-.event-title {
+.show-event-title {
+  font-size: 22px;
+  text-align: center;
   font-weight: bold;
-  color: maroon;
+  color: darkgreen;
 }
-.event-date {
-  color: gray;
+.show-event-date-data {
+  color: grey;
 }
-.edit-button {
-  width: 10%;
-  margin-right: 4px;
-  border: 0;
-  border-radius: 5px;
-  color: white;
-  background-color: rgb(111, 157, 185);
+.show-event-description,
+.show-event-date {
+  font-size: 20px;
+  font-weight: bold;
 }
-.delete-button {
-  width: 10%;
-  margin-right: 4px;
-  border: 0;
-  border-radius: 5px;
-  color: white;
-  background-color: rgb(177, 1, 1);
+.show-event-description-data,
+.show-event-date-data {
+  font-size: 18px;
 }

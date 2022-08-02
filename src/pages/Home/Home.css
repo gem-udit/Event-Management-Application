@@ -1,35 +1,40 @@
-.home{
-    text-align: left;
+.home {
+  text-align: left;
+  margin-bottom: 40px;
 }
-.home-container{
-    margin: auto;
-    border-radius: 5px;
-    border: 1px solid lightgray;
-    padding: 20px;
-    width: 63vw;
-    height:63vh;
-    overflow-y: scroll;
+.no-quiz-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 55vh;
 }
-.home-text-center{
-    text-align: center;
+.no-quiz-text {
+  color: gray;
 }
-.align-home-event-btn{
-    text-align: center;
-    margin: 5px;
+.home-container {
+  margin: auto;
+  border-radius: 5px;
+  /* border: 1px solid lightgray; */
+  padding: 20px;
+  width: 90%;
+  height: auto;
+  /* overflow-y: scroll; */
+}
+.home-text-center {
+  text-align: center;
+}
+.align-home-event-btn {
+  text-align: center;
+  margin: 5px;
 }
 .footer {
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-    margin: auto;
-    background-color: rgb(47, 47, 47);
-    border-radius: 3px;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  margin: auto;
+  background-color: rgb(47, 47, 47);
+  border-radius: 3px;
 
-    color: white;
-    text-align: center;
- }
-@media (max-width: 767px) {
-    .home-container{
-        width: 90vw;
-    }
+  color: white;
+  text-align: center;
 }

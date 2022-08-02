@@ -1,0 +1,15 @@
+.user-data-row {
+  padding: 10px;
+}
+.user-data-column-1 {
+  font-weight: bold;
+}
+.user-data-container {
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+}
+.user-data-small-container {
+  width: 65%;
+  border-radius: 5px;
+}

@@ -2,23 +2,23 @@ import axios from "axios";
 
 const base_URL = "https://jsonplaceholder.typicode.com/users";
 
-async function getAllUsers() {
-    try{
+async function getEmployees() {
+    try {
         const response = await axios.get(base_URL);
         return response.data;
-    }catch(error) {
+    } catch (error) {
         return [];
     }
 }
 
-async function getParticularUser(findById) {
-    try{
+async function getEmployee(findById) {
+    try {
         const response = await axios.get(`${base_URL}/${findById}`);
         return response.data;
     }
-    catch(error) {
+    catch (error) {
         return [];
     }
 }
 
-export {getAllUsers,getParticularUser};
+export { getEmployees, getEmployee };

@@ -4,12 +4,12 @@ import "./CreateEvent.css"
 
 function CreateEvent({ setOpenModal, onAdd }) {
 
-  const [myEvent, setMyEvent] = useState({
+  const [newEvent, setNewEvent] = useState({
     title: "",
     description: "",
     eventDate: ""
   });
-  const [myEventErros, setMyEventErros] = useState({
+  const [newEventErros, setNewEventErros] = useState({
     title: "",
     description: "",
     eventDate: ""
@@ -36,7 +36,7 @@ function CreateEvent({ setOpenModal, onAdd }) {
       isValid = false;
     }
     if (!isValid) {
-      setMyEventErros(prevState => {
+      setNewEventErros(prevState => {
         return {
           ...prevState, isError
         }
@@ -46,12 +46,12 @@ function CreateEvent({ setOpenModal, onAdd }) {
   };
 
   const handleClose = () => {
-    setMyEventErros({
+    setNewEventErros({
       title: "",
       description: "",
       eventDate: ""
     })
-    setMyEvent({
+    setNewEvent({
       title: "",
       description: "",
       eventDate: ""
@@ -62,7 +62,7 @@ function CreateEvent({ setOpenModal, onAdd }) {
 
   const handleChange = (event) => {
     const { name, value } = event.target;
-    let isError = myEventErros;
+    let isError = newEventErros;
     switch (name) {
       case "title":
         if (value.length === 0) {
@@ -92,13 +92,13 @@ function CreateEvent({ setOpenModal, onAdd }) {
       default:
         break;
     }
-    setMyEvent(prevState => {
+    setNewEvent(prevState => {
       return {
         ...prevState,
         [name]: value
       }
     })
-    setMyEventErros((prevState) => {
+    setNewEventErros((prevState) => {
       return {
         ...prevState,
         isError
@@ -108,17 +108,17 @@ function CreateEvent({ setOpenModal, onAdd }) {
 
   const addEvent = (event) => {
     event.preventDefault();
-    if (eventFormValid(myEventErros, myEvent)) {
-      onAdd(myEvent);
+    if (eventFormValid(newEventErros, newEvent)) {
+      onAdd(newEvent);
       handleClose();
     }
   }
 
   const resetFields = () => {
-    setMyEvent({ title: "", description: "", eventDate: "" });
-    setMyEventErros({ title: "", description: "", eventDate: "" })
+    setNewEvent({ title: "", description: "", eventDate: "" });
+    setNewEventErros({ title: "", description: "", eventDate: "" })
   }
-  const isError = myEventErros;
+  const isError = newEventErros;
   return (
     <Modal show={true} onHide={handleClose}>
       <Modal.Header closeButton>
@@ -129,7 +129,7 @@ function CreateEvent({ setOpenModal, onAdd }) {
           <div className="row mb-1">
             <label className="col-md-3">Title</label>
             <div className="col-md-9">
-              <input placeholder="Enter Title" type="text" onChange={handleChange} value={myEvent.title} name="title" className={isError.title.length > 0 ? "my-createEvent-input is-invalid form-control" : "my-createEvent-input form-control"} />
+              <input placeholder="Enter Title" type="text" onChange={handleChange} value={newEvent.title} name="title" className={isError.title.length > 0 ? "my-createEvent-input is-invalid form-control" : "my-createEvent-input form-control"} />
               {isError.title.length > 0 && (
                 <span className="invalid-feedback">{isError.title}</span>
               )}
@@ -149,7 +149,7 @@ function CreateEvent({ setOpenModal, onAdd }) {
           <div className="row mb-1">
             <label className="col-md-3">Description</label>
             <div className="col-md-9">
-              <textarea onChange={handleChange} value={myEvent.description} name="description" className={isError.description.length > 0 ? "my-createEvent-input is-invalid form-control" : "my-createEvent-input form-control"} placeholder="Enter Description" rows="3" />
+              <textarea onChange={handleChange} value={newEvent.description} name="description" className={isError.description.length > 0 ? "my-createEvent-input is-invalid form-control" : "my-createEvent-input form-control"} placeholder="Enter Description" rows="3" />
               {isError.description.length > 0 && (
                 <span className="invalid-feedback">{isError.description}</span>
               )}

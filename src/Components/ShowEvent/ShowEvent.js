@@ -1,37 +1,37 @@
-import React, { useState } from "react";
-import EditEvent from "../EditEvent/EditEvent";
-import { db } from '../../firebase/firebase';
-import { doc, deleteDoc } from "firebase/firestore";
-import './ShowEvent.css'
-function ShowEvent(props) {
-    const [modalOpen, setModalOpen] = useState(false);
+import React from "react";
+import { Modal } from "react-bootstrap";
+import "./ShowEvent.css"
 
-    const handleDeleteBtnClick = async () => {
-        const taskDocRef = doc(db, 'allEvents', props.id)
-        try {
-            await deleteDoc(taskDocRef)
-        } catch (err) {
-            alert(err)
-        }
+function ShowEvent({ setOpenShowEventModal, event }) {
+
+    const handleClose = () => {
+        setOpenShowEventModal(false);
     }
 
-    const handleEditBtnClick = () => {
-        setModalOpen(true);
-    }
     return (
-        <>
-            <div className="show-event mb-4 shadow">
-                <div className="event-title">{props.title}</div>
-                <div className="event-date">{props.eventDate.split("-").reverse().join("-")}</div>
-                <div className="event-description">{props.description}</div>
-                <div>
-                    <button onClick={handleEditBtnClick} className="edit-button">Edit</button>
-                    <button onClick={handleDeleteBtnClick} className="delete-button">Delete</button>
-                </div>
-            </div>
-            {modalOpen && <EditEvent setOpenModal={setModalOpen} event={props} />}
-        </>
-    )
+        <Modal show={true} onHide={handleClose}>
+            <Modal.Header closeButton>
+                <Modal.Title>Event Details</Modal.Title>
+            </Modal.Header>
 
+            <Modal.Body>
+                <div className="show-event-title mb-3">
+                    {event.title}
+                </div>
+                <div className="show-event-date">
+                    Event Date
+                </div>
+                <div className="show-event-date-data mb-2">
+                    {event.eventDate.split("-").reverse().join("-")}
+                </div>
+                <div className="show-event-description">
+                    Description
+                </div>
+                <div className="show-event-description-data mb-3">
+                    {event.description}
+                </div>
+            </Modal.Body>
+        </Modal>
+    );
 }
 export default ShowEvent;

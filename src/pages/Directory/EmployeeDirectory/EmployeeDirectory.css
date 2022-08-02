@@ -1,0 +1,14 @@
+.employee-name {
+  cursor: pointer;
+}
+.employee-name:hover {
+  color: darkgreen;
+  font-weight: bold;
+}
+.odd-idx-background {
+  background-color: rgb(201, 253, 201);
+}
+.even-idx-background {
+  background-color: white;
+  /* rgb(140, 200, 140); */
+}

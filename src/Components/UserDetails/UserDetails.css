@@ -1,0 +1,17 @@
+.user-details-title,
+.user-details-data {
+  font-size: 18px;
+}
+.user-details-title {
+  font-weight: bold;
+  color: darkgreen;
+}
+.user-details-profile-img {
+  border-radius: 50%;
+  width: 100px;
+  height: 100px;
+}
+.user-details-img-container {
+  display: flex;
+  justify-content: center;
+}

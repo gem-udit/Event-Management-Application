@@ -1,0 +1,40 @@
+.event-card {
+  border: 1px solid lightgrey;
+  border-radius: 5px;
+  padding: 10px;
+  padding-left: 30px;
+  height: auto;
+  box-shadow: 1px 1px lightgray;
+}
+.event-title {
+  font-size: larger;
+  font-weight: bold;
+  color: darkgreen;
+  cursor: pointer;
+}
+.event-date {
+  color: gray;
+}
+.event-description {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.edit-button {
+  width: 30%;
+  height: 35px;
+  margin-right: 4px;
+  border: 0;
+  border-radius: 5px;
+  color: white;
+  background-color: darkgreen;
+}
+.delete-button {
+  width: 30%;
+  height: 35px;
+  margin-right: 4px;
+  border: 0;
+  border-radius: 5px;
+  color: white;
+  background-color: darkgreen;
+}

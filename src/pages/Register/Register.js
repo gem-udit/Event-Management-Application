@@ -42,7 +42,7 @@ function Register() {
     useEffect(() => {
         pathContext.updatePath(window.location.pathname);
         if (userContext.userDetails !== null && userContext.userDetails !== undefined && userContext.userDetails.name.length !== 0) {
-            navigate("/Home");
+            navigate("/home");
         }
     }, [pathContext, userContext, navigate]);
 
@@ -138,7 +138,7 @@ function Register() {
                 profileImg: []
             }
             localStorage.setItem(registerFormValues.userName, JSON.stringify(formValues));
-            navigate("/Login");
+            navigate("/login");
         }
     };
 
@@ -163,22 +163,20 @@ function Register() {
 
     return (
         <div className="row">
-            <div className="col-md-6 register-page-image">
-                <img src="https://wedevs.com/_ipx/https://cdn.wedevs.com/uploads/2022/03/How-to-Redirect-User-to-a-Custom-URL-After-Login.png?f=webp&q=90" alt="" width={"100%"} height={"100%"} />
-            </div>
-            <div className=" register-container col-md-6">
-                <div>
+            <img className="col-md-7 register-page-image" src="https://ciraig.org/wp-content/uploads/2020/09/undraw_Work_time_re_hdyv.png" alt="" />
+            <div className="register-container col-md-5">
+                <div className="register-inner-container">
                     <h1 className="register-heading">Register</h1>
                     <form className="register-form" onSubmit={onSubmit} noValidate>
                         <div className="row m-1">
                             <div className="col-md-6">
-                                <input className={isError.name.length > 0 ? "register-input is-invalid form-control" : "register-input form-control"} type="text" name="name" placeholder="Enter Name" onChange={formValChange}></input>
+                                <input className={isError.name.length > 0 ? "register-input is-invalid" : "register-input"} type="text" name="name" placeholder="Enter Name" onChange={formValChange}></input>
                                 {isError.name.length > 0 && (
                                     <span className="invalid-feedback">{isError.name}</span>
                                 )}
                             </div>
                             <div className="col-md-6">
-                                <input className={isError.userName.length > 0 ? "register-input is-invalid form-control" : "register-input form-control"} type="text" name="userName" placeholder="Enter Username" onChange={formValChange}></input>
+                                <input className={isError.userName.length > 0 ? "register-input is-invalid" : "register-input"} type="text" name="userName" placeholder="Enter Username" onChange={formValChange}></input>
                                 {isError.userName.length > 0 && (
                                     <span className="invalid-feedback">{isError.userName}</span>
                                 )}
@@ -186,13 +184,13 @@ function Register() {
                         </div>
                         <div className="row m-1">
                             <div className="col-md-6">
-                                <input className={isError.email.length > 0 ? "register-input is-invalid form-control" : "register-input form-control"} type="email" name="email" placeholder="Enter Email" onChange={formValChange}></input>
+                                <input className={isError.email.length > 0 ? "register-input is-invalid" : "register-input"} type="email" name="email" placeholder="Enter Email" onChange={formValChange}></input>
                                 {isError.email.length > 0 && (
                                     <span className="invalid-feedback">{isError.email}</span>
                                 )}
                             </div>
                             <div className="col-md-6">
-                                <input className={isError.phone.length > 0 ? "register-input is-invalid form-control" : "register-input form-control"} type="text" name="phone" placeholder="Enter Phone Number" onChange={formValChange}></input>
+                                <input className={isError.phone.length > 0 ? "register-input is-invalid" : "register-input"} type="text" name="phone" placeholder="Enter Phone Number" onChange={formValChange}></input>
                                 {isError.phone.length > 0 && (
                                     <span className="invalid-feedback">{isError.phone}</span>
                                 )}
@@ -200,20 +198,20 @@ function Register() {
                         </div>
                         <div className="row m-1">
                             <div className="col-md-6">
-                                <input className={isError.newPassword.length > 0 ? "register-input is-invalid form-control" : "register-input form-control"} type="password" name="newPassword" placeholder="Enter Password" onChange={formValChange}></input>
+                                <input className={isError.newPassword.length > 0 ? "register-input is-invalid" : "register-input"} type="password" name="newPassword" placeholder="Enter Password" onChange={formValChange}></input>
                                 {isError.newPassword.length > 0 && (
                                     <span className="invalid-feedback">{isError.newPassword}</span>
                                 )}
                             </div>
                             <div className="col-md-6">
-                                <input className={isError.confirmPassword.length > 0 ? "register-input is-invalid form-control" : "register-input form-control"} type="password" name="confirmPassword" placeholder="Confirm Password" onChange={formValChange}></input>
+                                <input className={isError.confirmPassword.length > 0 ? "register-input is-invalid" : "register-input"} type="password" name="confirmPassword" placeholder="Confirm Password" onChange={formValChange}></input>
                                 {isError.confirmPassword.length > 0 && (
                                     <span className="invalid-feedback">{isError.confirmPassword}</span>
                                 )}
                             </div>
                         </div>
                         <button className="register-button mt-3" type="submit">Register</button>
-                        <div className="p-2">Already have a account. <a href="/Login">Login</a></div>
+                        <div className="p-2">Already have a account. <a href="/login">Login</a></div>
                     </form>
                 </div>
             </div>

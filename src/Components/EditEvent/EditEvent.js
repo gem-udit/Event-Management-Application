@@ -6,12 +6,12 @@ import "./EditEvent.css"
 
 function EditEvent({ setOpenModal, event }) {
 
-    const [myEvent, setMyEvent] = useState({
+    const [updatedEvent, setUpdatedEvent] = useState({
         title: event.title,
         description: event.description,
         eventDate: event.eventDate
     });
-    const [myEventErros, setMyEventErros] = useState({
+    const [updatedEventErros, setUpdatedEventErros] = useState({
         title: "",
         description: "",
         eventDate: ""
@@ -38,7 +38,7 @@ function EditEvent({ setOpenModal, event }) {
             isValid = false;
         }
         if (!isValid) {
-            setMyEventErros(prevState => {
+            setUpdatedEventErros(prevState => {
                 return {
                     ...prevState, isError
                 }
@@ -48,12 +48,12 @@ function EditEvent({ setOpenModal, event }) {
     };
 
     const handleClose = () => {
-        setMyEventErros({
+        setUpdatedEventErros({
             title: "",
             description: "",
             eventDate: ""
         })
-        setMyEvent({
+        setUpdatedEvent({
             title: "",
             description: "",
             eventDate: ""
@@ -64,7 +64,7 @@ function EditEvent({ setOpenModal, event }) {
 
     const handleChange = (event) => {
         const { name, value } = event.target;
-        let isError = myEventErros;
+        let isError = updatedEventErros;
         switch (name) {
             case "title":
                 if (value.length === 0) {
@@ -94,13 +94,13 @@ function EditEvent({ setOpenModal, event }) {
             default:
                 break;
         }
-        setMyEvent(prevState => {
+        setUpdatedEvent(prevState => {
             return {
                 ...prevState,
                 [name]: value
             }
         })
-        setMyEventErros((prevState) => {
+        setUpdatedEventErros((prevState) => {
             return {
                 ...prevState,
                 isError
@@ -110,13 +110,13 @@ function EditEvent({ setOpenModal, event }) {
 
     const editEvent = async (e) => {
         e.preventDefault();
-        if (eventFormValid(myEventErros, myEvent)) {
+        if (eventFormValid(updatedEventErros, updatedEvent)) {
             const taskDocRef = doc(db, 'allEvents', event.id)
             try {
                 await updateDoc(taskDocRef, {
-                    title: myEvent.title,
-                    description: myEvent.description,
-                    eventDate: myEvent.eventDate
+                    title: updatedEvent.title,
+                    description: updatedEvent.description,
+                    eventDate: updatedEvent.eventDate
                 })
             } catch (err) {
                 alert(err)
@@ -126,10 +126,10 @@ function EditEvent({ setOpenModal, event }) {
     }
 
     const resetFields = () => {
-        setMyEvent({ title: "", description: "", eventDate: "" });
-        setMyEventErros({ title: "", description: "", eventDate: "" })
+        setUpdatedEvent({ title: "", description: "", eventDate: "" });
+        setUpdatedEventErros({ title: "", description: "", eventDate: "" })
     }
-    const isError = myEventErros;
+    const isError = updatedEventErros;
     return (
         <Modal show={true} onHide={handleClose}>
             <Modal.Header closeButton>
@@ -140,7 +140,7 @@ function EditEvent({ setOpenModal, event }) {
                     <div className="row mb-1">
                         <label className="col-md-3">Title</label>
                         <div className="col-md-9">
-                            <input placeholder="Enter Title" type="text" onChange={handleChange} value={myEvent.title} name="title" className={isError.title.length > 0 ? "my-createEvent-input is-invalid form-control" : "my-createEvent-input form-control"} />
+                            <input placeholder="Enter Title" type="text" onChange={handleChange} value={updatedEvent.title} name="title" className={isError.title.length > 0 ? "my-createEvent-input is-invalid form-control" : "my-createEvent-input form-control"} />
                             {isError.title.length > 0 && (
                                 <span className="invalid-feedback">{isError.title}</span>
                             )}
@@ -149,7 +149,7 @@ function EditEvent({ setOpenModal, event }) {
                     <div className="row mb-1">
                         <label className="col-md-3">Event Date</label>
                         <div className="col-md-9">
-                            <input value={myEvent.eventDate} type="date" onChange={handleChange}
+                            <input value={updatedEvent.eventDate} type="date" onChange={handleChange}
                                 name="eventDate"
                                 className={isError.eventDate.length > 0 ? "my-createEvent-input-date is-invalid form-control" : "my-createEvent-input-date form-control"}></input>
                             {isError.eventDate.length > 0 && (
@@ -160,7 +160,7 @@ function EditEvent({ setOpenModal, event }) {
                     <div className="row mb-1">
                         <label className="col-md-3">Description</label>
                         <div className="col-md-9">
-                            <textarea onChange={handleChange} value={myEvent.description} name="description" className={isError.description.length > 0 ? "my-createEvent-input is-invalid form-control" : "my-createEvent-input form-control"} placeholder="Enter Description" rows="3" />
+                            <textarea onChange={handleChange} value={updatedEvent.description} name="description" className={isError.description.length > 0 ? "my-createEvent-input is-invalid form-control" : "my-createEvent-input form-control"} placeholder="Enter Description" rows="3" />
                             {isError.description.length > 0 && (
                                 <span className="invalid-feedback">{isError.description}</span>
                             )}

@@ -21,7 +21,7 @@ function Login() {
     useEffect(() => {
         pathContext.updatePath(window.location.pathname);
         if (userContext.userDetails !== null && userContext.userDetails !== undefined && userContext.userDetails.name.length !== 0) {
-            navigate("/Home");
+            navigate("/home");
         }
     }, [pathContext, userContext, navigate]);
 
@@ -36,7 +36,7 @@ function Login() {
         else {
             let stringObj = localStorage.getItem(loginFormValues.userName);
             user = JSON.parse(stringObj);
-            if (user === null || user === undefined) {
+            if ((user === null || user === undefined) && loginFormValues.userName !== userContext.adminUser.userName) {
                 isError.userName = "username does not exist";
                 isFormValid = false;
             }
@@ -46,7 +46,11 @@ function Login() {
             isFormValid = false;
         }
         else {
-            if (user !== null && user !== undefined && user.password !== loginFormValues.password) {
+            if ((user === null || user === undefined) && loginFormValues.password !== userContext.adminUser.password) {
+                isError.password = "password is incorrect";
+                isFormValid = false;
+            }
+            else if (user !== null && user !== undefined && user.password !== loginFormValues.password) {
                 isError.password = "password is incorrect";
                 isFormValid = false;
             }
@@ -62,11 +66,19 @@ function Login() {
     const onSubmit = (event) => {
         event.preventDefault();
         if (isLoginFormValid()) {
-            let stringObj = localStorage.getItem(loginFormValues.userName);
-            let loggedInUser = JSON.parse(stringObj);
+            console.log("yes");
+            let loggedInUser = null;
+            if (loginFormValues.userName === userContext.adminUser.userName) {
+                loggedInUser = userContext.adminUser;
+            }
+            else {
+                let stringObj = localStorage.getItem(loginFormValues.userName);
+                loggedInUser = JSON.parse(stringObj);
+            }
+
             localStorage.setItem("authorizedUserDetails", JSON.stringify(loggedInUser));
             userContext.updateUser(loggedInUser);
-            navigate("/Home");
+            navigate("/home");
         }
     };
 
@@ -91,23 +103,21 @@ function Login() {
 
     return (
         <div className="row">
-            <div className="col-md-6 login-page-image">
-                <img src="https://wedevs.com/_ipx/https://cdn.wedevs.com/uploads/2022/03/How-to-Redirect-User-to-a-Custom-URL-After-Login.png?f=webp&q=90" alt="" width={"100%"} height={"100%"} />
-            </div>
-            <div className="login-container col-md-6">
+            <img className="col-md-7 login-page-image" src="https://ciraig.org/wp-content/uploads/2020/09/undraw_Work_time_re_hdyv.png" alt="" />
+            <div className="login-container col-md-5">
                 <div>
-                    <h1 className="login-heading">Login</h1>
+                    <h1 className="login-heading">Log In</h1>
                     <form className="login-form" onSubmit={onSubmit} noValidate>
-                        <input className={isError.userName.length > 0 ? "login-input is-invalid form-control" : "login-input form-control"} type="text" name="userName" placeholder="Enter Username" onChange={formValChange}></input>
+                        <input className={isError.userName.length > 0 ? "login-input is-invalid" : "login-input"} type="text" name="userName" placeholder="Enter Username" onChange={formValChange}></input>
                         {isError.userName.length > 0 && (
                             <span className="invalid-feedback">{isError.userName}</span>
                         )}
-                        <input className={isError.password.length > 0 ? "login-input is-invalid form-control" : "login-input form-control"} type="password" name="password" placeholder="Enter Password" onChange={formValChange}></input>
+                        <input className={isError.password.length > 0 ? "login-input is-invalid" : "login-input"} type="password" name="password" placeholder="Enter Password" onChange={formValChange}></input>
                         {isError.password.length > 0 && (
                             <span className="invalid-feedback">{isError.password}</span>
                         )}
                         <button className="login-button" type="submit">Submit</button>
-                        <div className="p-2">Don't have a account? <a href="/Register">Register Yourself</a></div>
+                        <div className="p-2">Don't have a account? <a href="/register">Register Yourself</a></div>
                     </form>
                 </div>
             </div>

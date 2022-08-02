@@ -22,7 +22,7 @@ const UserState = (props) => {
         email: "admin1234@geminisolutions.com",
         phone: "+120 65430987",
         password: "Gemini@123",
-        profileImg: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/Unknown_person.jpg/925px-Unknown_person.jpg"
+        profileImg: []
     }
     const updateUser = (value) => {
         setUserDetails(value);
