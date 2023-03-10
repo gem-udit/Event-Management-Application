@@ -4,37 +4,78 @@
   padding: 10px;
   padding-left: 30px;
   height: auto;
-  box-shadow: 1px 1px lightgray;
+  box-shadow: 3px 3px lightgray;
 }
 .event-title {
   font-size: larger;
   font-weight: bold;
-  color: darkgreen;
+  color: green;
   cursor: pointer;
-}
-.event-date {
-  color: gray;
 }
 .event-description {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
-.edit-button {
-  width: 30%;
-  height: 35px;
-  margin-right: 4px;
-  border: 0;
-  border-radius: 5px;
-  color: white;
-  background-color: darkgreen;
-}
+.edit-button,
 .delete-button {
-  width: 30%;
-  height: 35px;
+  width:20%;
+  height: 25px;
   margin-right: 4px;
   border: 0;
   border-radius: 5px;
   color: white;
-  background-color: darkgreen;
+  background-color: green;
 }
+/* .event-card-container,
+.event-image-container {
+  display: flex;
+  justify-content: center;
+}
+.event-card-container {
+  align-items: center;
+}
+.event-card-small-container {
+  width: 70%;
+}
+.event-card {
+  width: 100%;
+  border: 1px solid lightgrey;
+  border-radius: 5px;
+  padding: 10px;
+  height: auto;
+  box-shadow: 3px 3px lightgray;
+}
+.event-description {
+  font-size: 20px;
+}
+.event-details,
+.event-date,
+.event-name {
+  height: 25%;
+}
+.event-name {
+  font-weight: bolder;
+  color: green;
+  cursor: pointer;
+}
+.event-image {
+  height: 90%;
+  width: 90%;
+}
+.event-date {
+  color: grey;
+}
+.event-image-container {
+  height: 200px;
+}
+@media (max-width: 767px) {
+  .event-image {
+    width: 70%;
+    height: 70%;
+  }
+  .edit-button,
+  .delete-button {
+    width: 25%;
+  }
+} */

@@ -1,19 +1,27 @@
 import React, { useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import Button from "react-bootstrap/esm/Button";
-import CreateEvent from "../../components/CreateEvent/CreateEvent";
+import { ToastContainer } from 'react-toastify';
+import { collection, query, orderBy, onSnapshot } from 'firebase/firestore'
+import './Home.css';
 import PathContext from "../../context/pathContext";
 import UserContext from "../../context/userContext";
 import { db } from '../../firebase/firebase';
-import { collection, addDoc, Timestamp, query, orderBy, onSnapshot } from 'firebase/firestore'
-import './Home.css';
 import EventCard from "../../components/EventCard/EventCard";
 import Heading from "../../components/Heading/Heading";
+import EventForm from "../../components/EventForm/EventForm";
 function Home() {
 
     const pathContext = useContext(PathContext);
     const userContext = useContext(UserContext);
     const [events, setEvents] = useState([]);
+    const event = {
+        title: "",
+        description: "",
+        eventDate: "",
+        eventLocation: "",
+        eventMode: ""
+    }
     const [modalOpen, setModalOpen] = useState(false)
     const navigate = useNavigate();
 
@@ -37,21 +45,6 @@ function Home() {
             })))
         })
     }
-
-    const addNote = async (newEvent) => {
-        fetchEvents();
-        try {
-            await addDoc(collection(db, 'allEvents'), {
-                title: newEvent.title,
-                description: newEvent.description,
-                eventDate: newEvent.eventDate,
-                created: Timestamp.now()
-            })
-        } catch (err) {
-            alert(err)
-        }
-    }
-
     return (
         <div className="home">
             <Heading heading="All Events" />
@@ -68,14 +61,16 @@ function Home() {
             {events !== null && events !== undefined && events.length !== 0 && <div className="home-container">
                 <div className="row">
                     {events.map((eventItem, index) => {
-                        return (<EventCard key={eventItem.id} id={eventItem.id} title={eventItem.data.title} description={eventItem.data.description} eventDate={eventItem.data.eventDate} />);
+                        return (<EventCard key={eventItem.id} eventObj={eventItem.data} eventId={eventItem.id} />)// id={eventItem.id} title={eventItem.data.title} description={eventItem.data.description} eventDate={eventItem.data.eventDate} />);
                     })}
                 </div>
             </div>}
+            {/* <EventCard /> */}
             <div className="footer">
                 Copyright 2022 by Gemini Training
             </div>
-            {modalOpen && <CreateEvent setOpenModal={setModalOpen} onAdd={addNote} />}
+            <ToastContainer />
+            {modalOpen && <EventForm setOpenModal={setModalOpen} eventObj={event} createEventBtnClicked={true} eventId="" />}
         </div>
     )
 }

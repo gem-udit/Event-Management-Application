@@ -25,6 +25,18 @@ function ShowEvent({ setOpenShowEventModal, event }) {
                     {event.eventDate.split("-").reverse().join("-")}
                 </div>
                 <div className="show-event-description">
+                    Event Mode
+                </div>
+                <div className="show-event-description-data mb-3">
+                    {event.eventMode}
+                </div>
+                <div className="show-event-description">
+                    Event Location
+                </div>
+                <div className="show-event-description-data mb-3">
+                    {event.eventLocation}
+                </div>
+                <div className="show-event-description">
                     Description
                 </div>
                 <div className="show-event-description-data mb-3">

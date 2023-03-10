@@ -2,7 +2,7 @@
   cursor: pointer;
 }
 .employee-name:hover {
-  color: darkgreen;
+  color: green;
   font-weight: bold;
 }
 .odd-idx-background {

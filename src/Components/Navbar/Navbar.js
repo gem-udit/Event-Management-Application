@@ -36,7 +36,7 @@ function NavigationBar() {
                         <Nav className="me-auto">
                             <NavLink to="/home" className={({ isActive }) => (isActive ? 'active' : 'inactive')}>Dashboard</NavLink>
                             <NavLink to="/user-directory" className={({ isActive }) => (isActive ? 'active' : 'inactive')}>User Directory</NavLink>
-                            <NavLink to="/employee-directory" className={({ isActive }) => (isActive ? 'active' : 'inactive')}>Employee Directory</NavLink>
+                            {/* <NavLink to="/employee-directory" className={({ isActive }) => (isActive ? 'active' : 'inactive')}>Employee Directory</NavLink> */}
                         </Nav>
                         <Nav>
                             <img className="profileImg" src={userContext.userImg} alt="" onClick={() => navigate("/user-profile")} />

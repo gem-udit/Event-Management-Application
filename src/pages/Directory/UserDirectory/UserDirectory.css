@@ -2,7 +2,7 @@
   cursor: pointer;
 }
 .user-name:hover {
-  color: darkgreen;
+  color: green;
   font-weight: bold;
 }
 .user-odd-idx-background {

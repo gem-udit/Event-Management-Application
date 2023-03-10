@@ -1,14 +1,14 @@
-.my-createEvent-container {
+.my-eventform-container {
   padding: 10px;
 }
-.my-createEvent-input {
+.my-eventform-input {
   background-color: white;
   border: 1px solid lightgrey;
   border-radius: 3px;
   padding: 10px;
   width: 100%;
 }
-.my-createEvent-input-date {
+.my-eventform-input-date {
   background-color: white;
   border: 1px solid lightgrey;
   border-radius: 3px;
@@ -16,26 +16,26 @@
   padding: 10px;
   width: 100%;
 }
-.my-createEvent-input:focus,
-.my-createEvent-input-date:focus {
+.my-eventform-input:focus,
+.my-eventform-input-date:focus {
   outline: none !important;
   border: 1px solid rgb(139, 139, 255);
 }
 
-.my-createEvent-center-btns {
+.my-eventform-center-btns {
   text-align: center;
 }
-.my-createEvent-btns {
+.my-eventform-btns {
   color: white;
   border-radius: 5px;
   width: 20%;
   height: 35px;
 }
-.my-createEvent-submit-btn-color {
+.my-eventform-btn-color {
   background-color: green;
-  border: 1px solid green;
+  border: 0;
 }
-.my-createEvent-reset-btn-color {
-  background-color: red;
-  border: 1px solid red;
+.eventform-label {
+  color: green;
+  font-weight: bolder;
 }
